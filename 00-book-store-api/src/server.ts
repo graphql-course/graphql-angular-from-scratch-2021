@@ -10,8 +10,12 @@ class GraphQLServer {
   private app!: Application;
   private httpServer!: Server;
   private readonly DEFAULT_PORT = 3025;
-
-  constructor() {
+  private schema!: GraphQLSchema;
+  constructor(schema: GraphQLSchema) {
+    if (schema === undefined) {
+      throw new Error("Necesitamos un schema de GraphQL para trabajar con APIs GraphQL");
+    }
+    this.schema = schema;
     this.init();
   }
 
@@ -30,47 +34,9 @@ class GraphQLServer {
   }
 
   private async configApolloServerExpress() {
-    // Definir los tipos de definición
-
-    const typeDefs = gql`
-      # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
-
-      type Query {
-        hello: String!
-        helloWithName(name: String): String!
-        peopleNumber: Int!
-      }
-    `;
-
-    // Resolvers
-
-    // Resolvers define the technique for fetching the types defined in the
-    // schema. This resolver retrieves books from the "books" array above.
-    const resolvers = {
-      Query: {
-        hello: (): string => "Hola a la API de GraphQL",
-        helloWithName: (
-          _: void,
-          args: { name: string },
-          context: any,
-          info: object
-        ) => {
-          console.log(info);
-          return `Hola ${args.name}`;
-        },
-        peopleNumber: () => 189303,
-      },
-    };
-
-    // Construir el schema ejecutable
-
-    const schema: GraphQLSchema = makeExecutableSchema({
-      typeDefs,
-      resolvers,
-    });
 
     const apolloServer = new ApolloServer({
-      schema,
+      schema: this.schema,
       introspection: true,
     });
 
