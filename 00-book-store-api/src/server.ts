@@ -3,7 +3,7 @@ import { ApolloServer, gql } from "apollo-server-express";
 import compression from "compression";
 import express, { Application } from "express";
 import { GraphQLSchema } from "graphql";
-import { Server } from "http";
+import { createServer, Server } from "http";
 
 class GraphQLServer {
   // Propiedades
@@ -25,6 +25,8 @@ class GraphQLServer {
     this.app = express();
 
     this.app.use(compression());
+
+    this.httpServer = createServer(this.app);
   }
 
   private async configApolloServerExpress() {
@@ -75,9 +77,19 @@ class GraphQLServer {
     await apolloServer.start();
 
     apolloServer.applyMiddleware({ app: this.app, cors: true });
+
+   
   }
 
-  private configRoutes() {}
+  private configRoutes() {
+    this.app.get("/hello", (_, res) => {
+      res.send("Bienvenid@s al primer proyecto");
+    });
+  
+    this.app.get("/", (_, res) => {
+      res.redirect("/graphql");
+    });
+  }
 
   listen(callback: (port: number) => void): void {
     this.httpServer.listen(+this.DEFAULT_PORT, () => {
