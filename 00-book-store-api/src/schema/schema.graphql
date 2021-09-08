@@ -5,10 +5,10 @@ type Query {
   helloWithName(name: String): String!
   peopleNumber: Int!
   # Lista de los elementos
-  booksList: [Book!]!
+  booksList: Result
   peoplesList: [People!]!
   # Elemento seleccionados
-  book(id: ID!): Book!
+  book(id: ID!): Result
   people(id: ID!): People!
 }
 
@@ -35,4 +35,12 @@ type People {
   github: String
   twitter: String
   books: [String!]!
+}
+
+# Definir resultado con más detalle
+type Result {
+  status: Boolean!
+  message: String!
+  list: [Book!]
+  item: Book
 }
