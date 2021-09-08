@@ -26,6 +26,7 @@ type Book {
   longDescription: String
   status: String
   authors: [String!]!
+  byPeoplesBuy: [People]
 }
 
 # Información de las personas
@@ -37,6 +38,8 @@ type People {
   github: String
   twitter: String
   books: [String!]!
+  # Libros que ha comprado estas persona
+  booksBuy: [Book]
 }
 
 # Definir resultado con más detalle
