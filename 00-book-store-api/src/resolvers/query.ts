@@ -21,6 +21,16 @@ const queryResolvers: IResolvers = {
     },
     peoplesList: (): Array<IPeople> => {
       return data.people;
+    },
+    book: (_: void, args: {id: string} ): IBook => {
+      return data.books.filter(
+        (value) => value.id === args.id
+      )[0]
+    },
+    people: (_: void, args: {id: string} ): IPeople => {
+      return data.people.filter(
+        (value) => value.id === args.id
+      )[0]
     }
   },
 };
