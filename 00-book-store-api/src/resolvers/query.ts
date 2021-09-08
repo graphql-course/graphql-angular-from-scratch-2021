@@ -1,4 +1,6 @@
+import { IBook } from './../interfaces/book-interface';
 import { IResolvers } from "@graphql-tools/utils";
+import data from "../data";
 
 const queryResolvers: IResolvers = {
   Query: {
@@ -13,6 +15,9 @@ const queryResolvers: IResolvers = {
       return `Hola ${args.name}`;
     },
     peopleNumber: () => 189303,
+    booksList: (): Array<IBook> => {
+      return data.books;
+    }
   },
 };
 
