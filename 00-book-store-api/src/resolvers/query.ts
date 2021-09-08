@@ -27,8 +27,16 @@ const queryResolvers: IResolvers = {
         list: data.books
       };
     },
-    peoplesList: (): Array<IPeople> => {
-      return data.people;
+    peoplesList: (): {
+      status: boolean,
+      message: string,
+      list: Array<IPeople>
+    } => {
+      return {
+        status: true,
+        message: "Lista de personas correctamente cargada",
+        list: data.people
+      };
     },
     book: (_: void, args: {id: string} ): {
       status: boolean,
@@ -47,10 +55,22 @@ const queryResolvers: IResolvers = {
         item: bookFind
       }
     },
-    people: (_: void, args: {id: string} ): IPeople => {
-      return data.people.filter(
+    people: (_: void, args: {id: string} ): {
+      status: boolean,
+      message: string,
+      item: IPeople
+    } => {
+      const peopleFind = data.people.filter(
         (value) => value.id === args.id
-      )[0]
+      )[0];
+
+      return {
+        status: peopleFind === undefined ? false : true,
+        message: peopleFind === undefined ? 
+          `Persona con el id ${args.id} no ha sido encontrado`:
+          `Persona con el id ${args.id} ha sido encontrado`,
+        item: peopleFind
+      }
     }
   },
 };

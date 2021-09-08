@@ -6,11 +6,13 @@ type Query {
   peopleNumber: Int!
   # Lista de los elementos
   booksList: Result
-  peoplesList: [People!]!
+  peoplesList: Result
   # Elemento seleccionados
   book(id: ID!): Result
-  people(id: ID!): People!
+  people(id: ID!): Result
 }
+
+union Data = Book | People
 
 # Información de los libros
 type Book {
@@ -41,6 +43,6 @@ type People {
 type Result {
   status: Boolean!
   message: String!
-  list: [Book!]
-  item: Book
+  list: [Data!]
+  item: Data
 }
