@@ -12,6 +12,12 @@ type Query {
   people(id: ID!): Result
 }
 
+type Mutation {
+  addBook(id: ID!): Boolean
+  updateBook(id: ID!): Boolean
+  deleteBook(id: ID!): Boolean
+}
+
 union Data = Book | People
 
 # Información de los libros
