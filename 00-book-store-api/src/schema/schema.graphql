@@ -5,17 +5,17 @@ type Query {
   helloWithName(name: String): String!
   peopleNumber: Int!
   # Lista de los elementos
-  booksList: Result
-  peoplesList: Result
+  booksList: Result!
+  peoplesList: Result!
   # Elemento seleccionados
-  book(id: ID!): Result
-  people(id: ID!): Result
+  book(id: ID!): Result!
+  people(id: ID!): Result!
 }
 
 type Mutation {
-  addBook(book: BookInput!): Boolean
-  updateBook(id: ID!): Boolean
-  deleteBook(id: ID!): Boolean
+  addBook(book: BookInput!): Result!
+  updateBook(id: ID!): Result!
+  deleteBook(id: ID!): Result!
 }
 
 union Data = Book | People
