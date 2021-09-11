@@ -58,12 +58,24 @@ const mutationResolvers: IResolvers = {
           message: "Actualizado correctamente el libro seleccionado",
           item : args.book
         }
+      },
+      deleteBook: (_: void, args : {id: string}): {
+        status: boolean,
+        message: string
+      } => {
+        let deleteItem = false;
+        for(let i = 0; i < data.books.length; i++) {
+          if (data.books[i].id === args.id) {
+            data.books.splice(i, 1);
+            deleteItem = true;
+            break;
+          }
+        }
+        return {
+          status: deleteItem,
+          message: deleteItem ? "Eliminado" : "No se ha eliminado ningún libro"
+        }
       }
-    /**
-         * addBook(id: ID!): Boolean
-  updateBook(id: ID!): Boolean
-  deleteBook(id: ID!): Boolean
-         */
   },
 };
 
