@@ -30,6 +30,35 @@ const mutationResolvers: IResolvers = {
         item: args.book,
       };
     },
+    updateBook: ( _: void,
+      args: { book: IBook }): {
+        status: boolean;
+        message: string;
+        item?: IBook;
+      } => {
+        // Buscamos si el libro existe
+        if (data.books.filter(
+          (bookItem: IBook) => bookItem.id === args.book.id
+        ).length === 0) {
+          return {
+            status: false,
+            message: "El libro que estás introduciendo no existe y no puedes actualizarlo. Revisa que ese id sea el correcto"
+          }
+        }
+
+        // Actualizamos el libro cuando lo encontremos
+        for(let i = 0; i < data.books.length; i++) {
+          if (data.books[i].id === args.book.id) {
+            (data.books[i] as IBook) = args.book;
+            break;
+          }
+        }
+        return {
+          status: true,
+          message: "Actualizado correctamente el libro seleccionado",
+          item : args.book
+        }
+      }
     /**
          * addBook(id: ID!): Boolean
   updateBook(id: ID!): Boolean
