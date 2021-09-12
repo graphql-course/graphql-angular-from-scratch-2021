@@ -16,6 +16,9 @@ type Mutation {
   addBook(book: BookInput!): Result!
   updateBook(book: BookInput!): Result!
   deleteBook(id: ID!): Result!
+  addPeople(people: PeopleInput!): Result!
+  updatePeople(people: PeopleInput!): Result!
+  deletePeople(id: ID!): Result!
 }
 
 union Data = Book | People
@@ -65,6 +68,16 @@ type People {
   books: [String!]!
   # Libros que ha comprado estas persona
   booksBuy: [Book]
+}
+
+input PeopleInput {
+  id: ID
+  name: String!
+  email: String!
+  website: String
+  github: String
+  twitter: String
+  books: [String!]
 }
 
 # Definir resultado con más detalle
