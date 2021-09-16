@@ -7,6 +7,6 @@ const resolverIndex = {
     ...queryResolvers,
     ...mutationResolvers,
     ...typesResolvers
-}
+};
 
 export default resolverIndex;

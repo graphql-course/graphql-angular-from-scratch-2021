@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node build/app.js",
     "build": "npx tsc -p . && ncp src/schema build/schema",
-    "dev": "nodemon \"src/app.ts\" --exec \"ts-node\" \"src/app.ts\" -e ts,graphql,json"
+    "dev": "nodemon \"src/app.ts\" --exec \"ts-node\" \"src/app.ts\" -e ts,graphql,json",
+    "lint": "npx eslint . --ext .ts",
+    "lint.fix": "npx eslint . --ext .ts --fix"
   },
   "keywords": [
     "graphql",
@@ -36,6 +38,9 @@
     "@types/graphql": "^14.5.0",
     "@types/graphql-depth-limit": "^1.1.2",
     "@types/node": "^16.7.10",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "eslint": "^7.32.0",
     "nodemon": "^2.0.12",
     "ts-node": "^10.2.1"
   }

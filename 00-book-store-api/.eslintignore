@@ -1,0 +1,4 @@
+build/
+bode_modules/
+dist/
+coverage/

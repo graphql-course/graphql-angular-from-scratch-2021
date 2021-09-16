@@ -1,4 +1,4 @@
-import { IPeople } from './../interfaces/people-interface';
+import { IPeople } from "./../interfaces/people-interface";
 import { IResolvers } from "@graphql-tools/utils";
 import data from "../data";
 import { IBook } from "../interfaces/book-interface";
@@ -19,7 +19,7 @@ const mutationResolvers: IResolvers = {
       ) {
         return {
           status: false,
-          message: `El libro que estás introduciendo ya existe. Prueba con otro por favor`,
+          message: "El libro que estás introduciendo ya existe. Prueba con otro por favor",
         };
       }
       const idValue = +data.books[data.books.length - 1].id + 1;
@@ -98,7 +98,7 @@ const mutationResolvers: IResolvers = {
       ) {
         return {
           status: false,
-          message: `La persona que estás introduciendo ya existe. Prueba con otro por favor`,
+          message: "La persona que estás introduciendo ya existe. Prueba con otro por favor",
         };
       }
       const idValue = +data.people[data.people.length - 1].id + 1;

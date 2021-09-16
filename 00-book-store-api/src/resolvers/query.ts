@@ -1,7 +1,7 @@
-import { IBook } from './../interfaces/book-interface';
+import { IBook } from "./../interfaces/book-interface";
 import { IResolvers } from "@graphql-tools/utils";
 import data from "../data";
-import { IPeople } from '../interfaces/people-interface';
+import { IPeople } from "../interfaces/people-interface";
 
 const queryResolvers: IResolvers = {
   Query: {
@@ -9,8 +9,8 @@ const queryResolvers: IResolvers = {
     helloWithName: (
       _: void,
       args: { name: string },
-      context: any,
-      info: object
+      context: unknown,
+      info: unknown
     ) => {
       console.log(info);
       return `Hola ${args.name}`;
@@ -53,7 +53,7 @@ const queryResolvers: IResolvers = {
           `Libro con el id ${args.id} no ha sido encontrado`:
           `Libro con el id ${args.id} ha sido encontrado`,
         item: bookFind
-      }
+      };
     },
     people: (_: void, args: {id: string} ): {
       status: boolean,
@@ -70,7 +70,7 @@ const queryResolvers: IResolvers = {
           `Persona con el id ${args.id} no ha sido encontrado`:
           `Persona con el id ${args.id} ha sido encontrado`,
         item: peopleFind
-      }
+      };
     }
   },
 };
