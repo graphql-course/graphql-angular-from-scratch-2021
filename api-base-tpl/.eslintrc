@@ -2,5 +2,13 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"]
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "rules": {
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "@typescript-eslint/no-explicit-any": ["error", {
+        "fixToUnknown": true
+    }],
+    "curly": "error"
+  }
 }
