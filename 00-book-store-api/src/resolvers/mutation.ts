@@ -106,7 +106,7 @@ const mutationResolvers: IResolvers = {
       (data.people as IPeople[]).push(args.people);
       return {
         status: true,
-        message: `Libro con el título ${args.people.name} ha sido añadido correctamente`,
+        message: `Persona con el nombre ${args.people.name} ha sido añadido correctamente`,
         item: args.people,
       };
     },
