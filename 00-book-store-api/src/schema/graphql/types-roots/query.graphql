@@ -1,0 +1,11 @@
+type Query {
+  hello: String!
+  helloWithName(name: String): String!
+  peopleNumber: Int!
+  # Lista de los elementos
+  booksList: Result!
+  peoplesList: Result!
+  # Elemento seleccionados
+  book(id: ID!): Result!
+  people(id: ID!): Result!
+}
