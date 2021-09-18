@@ -3,5 +3,5 @@
 type Query {
   hello: String!
   helloWithName(name: String): String!
-  peopleNumber: Int!
+  peopleNumber: Data!
 }
