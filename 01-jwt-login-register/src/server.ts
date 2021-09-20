@@ -48,7 +48,7 @@ class GraphQLServer {
 
   private async startDatabase() {
     const database = new Database();
-    const db = await database.init();
+    return await database.init();
   }
 
   private initializeContext() {
