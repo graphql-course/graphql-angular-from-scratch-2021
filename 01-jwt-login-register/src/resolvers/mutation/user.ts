@@ -8,7 +8,11 @@ const mutationUsersResolvers: IResolvers = {
       _: void,
       args: { user: IUser },
       context: { db: Db }
-    ): Promise<boolean> => {
+    ): Promise<{
+      status: boolean,
+      message: string,
+      user?: IUser
+    }> => {
       // Comprobar si existe el usuario en la base de datos con el correo
       // Si existe, error mostrando feedback
       console.log(args.user);
@@ -27,18 +31,23 @@ const mutationUsersResolvers: IResolvers = {
         lastElement.length === 0 ? "1" : String(+lastElement[0].id + 1);
       args.user.registerDate = new Date().toISOString();
       // Añadir el usuario a la base de datos
-
       return await context.db
         .collection("users")
         .insertOne(args.user)
         .then((data) => {
           console.log(data);
           console.log("Añadido correctamente");
-          return true;
+          return {
+            status: true,
+            message: "Usuario añadido correctamente",
+            user: args.user
+          };
         })
         .catch((error) => {
-          console.log("Error: " + error);
-          return false;
+          return {
+            status: false,
+            message: `Usuario no se ha añadido: ${error}`,
+          };
         });
     },
   },
