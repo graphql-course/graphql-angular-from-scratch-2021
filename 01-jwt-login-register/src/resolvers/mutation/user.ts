@@ -31,7 +31,7 @@ const mutationUsersResolvers: IResolvers = {
       if (!args.user.password) {
         return {
           status: false,
-          message: `Debes de especificar un password para crear el usuario`,
+          message: "Debes de especificar un password para crear el usuario",
         };
       }
 
