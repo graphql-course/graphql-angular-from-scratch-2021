@@ -1,5 +1,0 @@
-type Data {
-    message: String
-    status: Boolean
-    data: Int
-}

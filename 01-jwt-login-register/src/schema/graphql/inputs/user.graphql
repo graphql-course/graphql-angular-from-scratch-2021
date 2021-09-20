@@ -1,0 +1,9 @@
+"Datos de entrada del usuario para gestionar la información"
+input UserInput {
+  id: ID
+  name: String!
+  lastname: String!
+  email: String!
+  password: String
+  registerDate: String!
+}
