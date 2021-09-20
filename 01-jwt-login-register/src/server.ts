@@ -3,6 +3,7 @@ import compression from "compression";
 import express, { Application } from "express";
 import { GraphQLSchema } from "graphql";
 import { createServer, Server } from "http";
+import environments from "./config/environment";
 
 class GraphQLServer {
   // Propiedades
@@ -19,9 +20,17 @@ class GraphQLServer {
   }
 
   private init() {
+    this.initializeEnvironents();
     this.configExpress();
     this.configApolloServerExpress();
     this.configRoutes();
+  }
+
+  private initializeEnvironents() {
+    if (process.env.NODE_ENV !== "production") {
+      const envs = environments;
+      console.log(envs);
+    }
   }
 
   private configExpress() {
