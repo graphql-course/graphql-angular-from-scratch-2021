@@ -9,14 +9,31 @@ const mutationUsersResolvers: IResolvers = {
       args: { user: IUser },
       context: { db: Db }
     ): Promise<{
-      status: boolean,
-      message: string,
-      user?: IUser
+      status: boolean;
+      message: string;
+      user?: IUser;
     }> => {
       // Comprobar si existe el usuario en la base de datos con el correo
       // Si existe, error mostrando feedback
-      console.log(args.user);
+      const userCheck = await context.db
+        .collection("users")
+        .findOne({ email: args.user.email });
+
+      if (userCheck !== null) {
+        return {
+          status: false,
+          message: `Usuario NO registrado porque ya existe el usuario ${args.user.email}`,
+        };
+      }
+
       // Usuario sin password definido, mostrar error
+
+      if (!args.user.password) {
+        return {
+          status: false,
+          message: `Debes de especificar un password para crear el usuario`,
+        };
+      }
 
       // Si todo va bien y tenemos la información para almacenar
       // Asignar el ID nuevo automáticamente, basándonos
@@ -40,7 +57,7 @@ const mutationUsersResolvers: IResolvers = {
           return {
             status: true,
             message: "Usuario añadido correctamente",
-            user: args.user
+            user: args.user,
           };
         })
         .catch((error) => {
