@@ -11,7 +11,7 @@ const mutationUsersResolvers: IResolvers = {
     ): Promise<boolean> => {
       // Comprobar si existe el usuario en la base de datos con el correo
       // Si existe, error mostrando feedback
-
+      console.log(args.user);
       // Usuario sin password definido, mostrar error
 
       // Si todo va bien y tenemos la información para almacenar
@@ -23,13 +23,23 @@ const mutationUsersResolvers: IResolvers = {
         .sort({ registerDate: -1 })
         .toArray();
 
-      if (lastElement.length === 0) {
-        args.user.id = "1";
-        return true;
-      }
-      args.user.id = String(+lastElement[0].id + 1);
+      args.user.id =
+        lastElement.length === 0 ? "1" : String(+lastElement[0].id + 1);
+      args.user.registerDate = new Date().toISOString();
+      // Añadir el usuario a la base de datos
 
-      return true;
+      return await context.db
+        .collection("users")
+        .insertOne(args.user)
+        .then((data) => {
+          console.log(data);
+          console.log("Añadido correctamente");
+          return true;
+        })
+        .catch((error) => {
+          console.log("Error: " + error);
+          return false;
+        });
     },
   },
 };
