@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { IResolvers } from "@graphql-tools/utils";
 import { Db } from "mongodb";
 import { IUser } from "../../interfaces/user.interface";
+import JWT from "../../lib/jwt";
 
 const queryLoginResolvers: IResolvers = {
   Query: {
@@ -15,11 +16,11 @@ const queryLoginResolvers: IResolvers = {
     ): Promise<{
       status: boolean;
       message: string;
-      user?: IUser;
+      token?: string;
     }> => {
-      const userSelect = await context.db.collection("users").findOne({
+      const userSelect: IUser = await context.db.collection("users").findOne({
         email: args.email,
-      });
+      }) as IUser;
 
       if (userSelect === null) {
         return {
@@ -28,7 +29,7 @@ const queryLoginResolvers: IResolvers = {
         };
       }
       // Comprobar lo introducido con el password encriptado
-      if (!bcrypt.compareSync(args.password, userSelect.password)) {
+      if (!bcrypt.compareSync(args.password, userSelect.password || "")) {
         return {
           status: false,
           message: "Login INCORRECTO. Contraseña incorrecta",
@@ -38,7 +39,7 @@ const queryLoginResolvers: IResolvers = {
       return {
         status: true,
         message: "Login Correcto",
-        // Devolver token
+        token: new JWT().sign(userSelect)
       };
     },
   },

@@ -10,11 +10,10 @@ const queryUsersResolvers: IResolvers = {
       context: { db: Db }
     ): Promise<Array<IUser>> => {
       console.log();
-      const users = await context.db.collection("users").find().toArray();
+      const users = await context.db.collection("users").find().toArray() as IUser[];
       const result: Array<IUser> = [];
       users.map((user) => {
-        delete user._id;
-        result.push(user as IUser);
+        result.push(user);
       });
       return result;
     },

@@ -4,7 +4,7 @@ type Query {
   "Obtenemos lista de todos los usuarios"
   users: [User!]!
   "Inicio de sesión con los credenciales"
-  login(email: String!, password: String!): ResultUser!
+  login(email: String!, password: String!): ResultToken!
   "Obtener nuestra información de autenticación"
   me: String
 }
