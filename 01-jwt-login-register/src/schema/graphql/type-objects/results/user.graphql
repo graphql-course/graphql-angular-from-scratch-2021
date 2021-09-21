@@ -1,4 +1,4 @@
-type ResultUser {
+type ResultUser  implements Result{
     status: Boolean!
     message: String!
     user: User

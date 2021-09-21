@@ -1,0 +1,4 @@
+interface Result {
+    status: Boolean!
+    message: String!
+}

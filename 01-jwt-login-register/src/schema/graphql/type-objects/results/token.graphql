@@ -1,4 +1,4 @@
-type ResultToken {
+type ResultToken implements Result{
     status: Boolean!
     message: String!
     token: String
