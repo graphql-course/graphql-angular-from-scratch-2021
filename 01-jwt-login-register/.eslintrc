@@ -9,6 +9,7 @@
     "@typescript-eslint/no-explicit-any": ["error", {
         "fixToUnknown": true
     }],
-    "curly": "error"
+    "curly": "error",
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }

@@ -1,6 +1,7 @@
 import { Db } from "mongodb";
 import { IResolvers } from "@graphql-tools/utils";
 import { IUser } from "../../interfaces/user.interface";
+import bcrypt from "bcrypt";
 
 const mutationUsersResolvers: IResolvers = {
   Mutation: {
@@ -47,6 +48,9 @@ const mutationUsersResolvers: IResolvers = {
       args.user.id =
         lastElement.length === 0 ? "1" : String(+lastElement[0].id + 1);
       args.user.registerDate = new Date().toISOString();
+      // Encriptar password (To hash a password:)
+      args.user.password = bcrypt.hashSync(args.user!.password, 10) ?? "";
+
       // Añadir el usuario a la base de datos
       return await context.db
         .collection("users")
