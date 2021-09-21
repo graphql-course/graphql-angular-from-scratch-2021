@@ -5,6 +5,7 @@ import { GraphQLSchema } from "graphql";
 import { createServer, Server } from "http";
 import Database from "./config/database";
 import environments from "./config/environment";
+import { IContext } from "./interfaces/context.interface";
 
 class GraphQLServer {
   // Propiedades
@@ -49,11 +50,11 @@ class GraphQLServer {
   private async configApolloServerExpress() {
     const database = new Database();
     const db = await database.init();
-
-    const context = async() => { 
-        return { db };
+    const context = async({req,connection}: IContext) => {
+        const token = req ? req.headers.authorization : connection.authorization;
+        return { db, token };
     };
-
+    
     const apolloServer = new ApolloServer({
       schema: this.schema,
       introspection: true,

@@ -35,6 +35,7 @@ const queryLoginResolvers: IResolvers = {
           message: "Login INCORRECTO. Contraseña incorrecta",
         };
       }
+      // Eliminar el password antes de generar el token
       delete userSelect.password;
       return {
         status: true,
