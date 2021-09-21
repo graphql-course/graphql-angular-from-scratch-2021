@@ -45,12 +45,11 @@ class GraphQLServer {
   private async configApolloServerExpress() {
     // Llamada para inicializar la base de datos
     const database = new Database();
-    const db = await database.db;
+    const db = await database.init();
 
-    const context: any = async() => {
-      return { db }
-    };
-    
+    const context = async() => {
+      return { db}
+    }
     const apolloServer = new ApolloServer({
       schema: this.schema,
       introspection: true,
