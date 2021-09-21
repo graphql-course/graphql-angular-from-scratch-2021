@@ -48,8 +48,8 @@ class GraphQLServer {
     const db = await database.init();
 
     const context = async() => {
-      return { db}
-    }
+      return { db};
+    };
     const apolloServer = new ApolloServer({
       schema: this.schema,
       introspection: true,
