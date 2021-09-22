@@ -22,10 +22,19 @@ const mutationResolvers: IResolvers = {
       
 
       // Añadir la fecha de registro antes de almacenar
+      args.user.registerDate = new Date().toISOString();
       // Encriptar password antes de almacenar
 
       // Insertar el usuario en la base de datos
-      return true;
+      return await context.db.collection("users").insertOne(args.user)
+      .then(() => {
+        console.log("Añadido correctamente");
+        return true;
+      })
+      .catch((error) => {
+        console.log(`ERROR: ${error}`);
+        return false;
+      });
     }
   },
 };
