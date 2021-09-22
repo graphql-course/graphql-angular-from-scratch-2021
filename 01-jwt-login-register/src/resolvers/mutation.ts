@@ -8,7 +8,11 @@ const mutationResolvers: IResolvers = {
       _: void,
       args: { user: IUser },
       context: { db: Db }
-    ): Promise<boolean> => {
+    ): Promise<{
+      status: boolean,
+      message: string,
+      user?: IUser
+    }> => {
       // Comprobar si existe el usuario en la base de datos con el correo
       // Si existe, error mostrando feedback
       const userCheck = await context.db.collection("users").findOne(
@@ -16,14 +20,18 @@ const mutationResolvers: IResolvers = {
       );
 
       if (userCheck) {
-        console.log("Usuario existe y no podemos registrarnos");
-        return false;
+        return {
+          status: false,
+          message: "Usuario existe y no podemos registrarnos"
+        };
       }
 
       // Usuario sin password definido, mostrar error si se cumple
       if (!args.user.password) {
-        console.log("Password no establecido / asignado");
-        return false;
+        return {
+          status: false,
+          message: "Password no establecido / asignado"
+        };
       }
 
       // YA TENEMOS LO NECESARIO PARA AÑADIR
@@ -51,11 +59,18 @@ const mutationResolvers: IResolvers = {
         .insertOne(args.user)
         .then(() => {
           console.log("Añadido correctamente");
-          return true;
+          return {
+            status: true,
+            message: "Añadido correctamente el usuario",
+            user: args.user
+          };
         })
         .catch((error) => {
           console.log(`ERROR: ${error}`);
-          return false;
+          return {
+            status: false,
+            message: `ERROR: ${error}`
+          };
         });
     },
   },
