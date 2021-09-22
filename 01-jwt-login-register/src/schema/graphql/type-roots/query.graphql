@@ -10,7 +10,7 @@ type Query {
       "Email del usuario registrado en la Base de datos"
       email:String!, 
       "Password asociada a un usuario para introducir los credenciales"
-      password: String!): String!
+      password: String!): ResultUser!
   "Obtenemos nuestros datos mediante autenticación por token JWT"
   me: String!
 }
