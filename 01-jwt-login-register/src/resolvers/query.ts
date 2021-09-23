@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import { IResolvers } from "@graphql-tools/utils";
 import { Db } from "mongodb";
 import { IUser } from "../interfaces/user.interface";
@@ -15,12 +16,19 @@ const queryResolvers: IResolvers = {
       user?: IUser
     }> => {
       return await context.db.collection("users").findOne(
-        { email: args.email, password: args.password}
+        { email: args.email}
       ).then((user) => {
         if (!user) {
           return {
             status: false,
-            message: "Usuario NO encontrado"
+            message: "Usuario no existe, comprueba que has introducido correctamente el correo"
+          };
+        }
+        // Comprobamos el password
+        if (!bcrypt.compareSync(args.password, user.password)) {
+          return {
+            status: false,
+            message: "Pasword no correcto, comprueba de nuevo introduciéndolo"
           };
         }
         delete user?._id;
