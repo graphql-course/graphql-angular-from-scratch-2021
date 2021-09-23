@@ -1,7 +1,7 @@
 import { IUser } from "./../interfaces/user.interface";
 import { IResolvers } from "@graphql-tools/utils";
 import { Db } from "mongodb";
-
+import bcrypt from "bcrypt";
 const mutationResolvers: IResolvers = {
   Mutation: {
     add: async (
@@ -52,6 +52,8 @@ const mutationResolvers: IResolvers = {
       // Añadir la fecha de registro antes de almacenar
       args.user.registerDate = new Date().toISOString();
       // Encriptar password antes de almacenar
+      args.user.password = bcrypt.hashSync(args.user.password, 10);
+      console.log(args.user);
 
       // Insertar el usuario en la base de datos
       return await context.db
