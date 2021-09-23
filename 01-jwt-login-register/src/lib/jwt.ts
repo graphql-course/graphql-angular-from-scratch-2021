@@ -17,9 +17,16 @@ class JWT {
   private secretKey = process.env.SECRET_KEY || "AnartzX_-MugikaJWT!!???";
   // Información del payload con fecha de caducidad de 24 horas
   sign(data: IUser, expiresIn: number = EXPIRETIME.H24): string {
-      return jwt.sign({ user: data}, this.secretKey, {
-          expiresIn
-      });
+    return jwt.sign({ user: data }, this.secretKey, {
+      expiresIn,
+    });
+  }
+  verify(token: string): string{
+    try {
+      return jwt.verify(token, this.secretKey) as string;
+    } catch (e) {
+      return "La autenticación del token es inválida. Por favor, inicia sesión para obtener un nuevo token";
+    }
   }
 }
 
