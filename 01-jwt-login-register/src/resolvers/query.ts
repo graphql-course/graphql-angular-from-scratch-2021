@@ -46,6 +46,10 @@ const queryResolvers: IResolvers = {
           message: `Error: ${error}`
         };
       });
+    },
+    me: (_: void, __: unknown, context: { token: string }) => {
+      console.log(context.token);
+      return "";
     }
   },
 };

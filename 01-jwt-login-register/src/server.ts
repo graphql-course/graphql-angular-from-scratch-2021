@@ -51,7 +51,6 @@ class GraphQLServer {
     const context = async({req, connection}: IContext) => {
       // Obtener el token que enviamos desde las cabeceras
       const token = req ? req.headers.authorization : connection.authorization;
-      console.log(token);
       return { db, token };
     };
     const apolloServer = new ApolloServer({

@@ -11,6 +11,15 @@ class JWT {
             expiresIn
         });
     }
+
+    // Verficar token
+    verify(token: string): string {
+        try {
+            return jwt.verify(token, this.secretKey) as string;
+        } catch (e) {
+            return "Token inválido";
+        }
+    }
 }
 
 export default JWT;
