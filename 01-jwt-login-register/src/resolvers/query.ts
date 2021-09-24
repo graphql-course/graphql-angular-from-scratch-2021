@@ -47,9 +47,24 @@ const queryResolvers: IResolvers = {
         };
       });
     },
-    me: (_: void, __: unknown, context: { token: string }) => {
+    me: (_: void, __: unknown, context: { token: string }): {
+      status: boolean,
+      message: string,
+      user?: IUser
+    } => {
       console.log(context.token);
-      return "";
+      const info = new JWT().verify(context.token);
+      if(info === "Token inválido") {
+        return {
+          status: false,
+          message: "Token no correcto por estar caducado o inválido"
+        }
+      }
+      return {
+        status: true,
+        message: "Token correcto para utilizar la información almacenada",
+        user: (info as unknown as { user: IUser}).user
+      };
     }
   },
 };

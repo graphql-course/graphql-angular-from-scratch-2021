@@ -12,5 +12,5 @@ type Query {
       "Password asociada a un usuario para introducir los credenciales"
       password: String!): ResultToken!
   "Obtenemos nuestros datos mediante autenticación por token JWT"
-  me: String!
+  me: ResultUser!
 }
