@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { IResolvers } from "@graphql-tools/utils";
 import { Db } from "mongodb";
 import { IUser } from "../interfaces/user.interface";
+import JWT from "../lib/jwt";
 
 const queryResolvers: IResolvers = {
   Query: {
@@ -13,7 +14,7 @@ const queryResolvers: IResolvers = {
     }, context: { db: Db}): Promise<{
       status: boolean,
       message: string,
-      user?: IUser
+      token?: string
     }> => {
       return await context.db.collection("users").findOne(
         { email: args.email}
@@ -35,7 +36,7 @@ const queryResolvers: IResolvers = {
         return {
           status: true,
           message: "Usuario correctamente cargado",
-          user: user as IUser
+          token: new JWT().sign(user as IUser)
         };
       }).catch((error) => {
         return {
