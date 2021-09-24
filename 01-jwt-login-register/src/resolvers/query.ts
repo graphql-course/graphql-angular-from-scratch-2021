@@ -33,6 +33,8 @@ const queryResolvers: IResolvers = {
           };
         }
         delete user?._id;
+        delete user.password;
+        delete user.registerDate;
         return {
           status: true,
           message: "Usuario correctamente cargado",

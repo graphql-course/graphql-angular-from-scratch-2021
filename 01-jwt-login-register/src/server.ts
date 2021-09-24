@@ -1,3 +1,4 @@
+import { IContext } from "./interfaces/context.interface";
 import { ApolloServer } from "apollo-server-express";
 import compression from "compression";
 import express, { Application } from "express";
@@ -47,8 +48,11 @@ class GraphQLServer {
     const database = new Database();
     const db = await database.init();
 
-    const context = async() => {
-      return { db};
+    const context = async({req, connection}: IContext) => {
+      // Obtener el token que enviamos desde las cabeceras
+      const token = req ? req.headers.authorization : connection.authorization;
+      console.log(token);
+      return { db, token };
     };
     const apolloServer = new ApolloServer({
       schema: this.schema,
