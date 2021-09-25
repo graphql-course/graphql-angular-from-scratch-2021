@@ -10,7 +10,7 @@ const queryMeResolver: IResolvers = {
       const info = new JWT().verify(token);
       if (
         info ===
-        "La autenticación del token es inválida. Por favor, inicia sesión para obtener un nuevo token"
+        "Token inválido"
       ) {
         return {
           status: false,

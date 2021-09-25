@@ -1,9 +1,9 @@
 import { Db } from "mongodb";
 import { IResolvers } from "@graphql-tools/utils";
-import { IUser } from "../../interfaces/user.interface";
+import { IUser } from "../../../interfaces/user.interface";
 import bcrypt from "bcrypt";
 
-const mutationUsersResolvers: IResolvers = {
+const mutationUsersAddResolvers: IResolvers = {
   Mutation: {
     add: async (
       _: void,
@@ -74,4 +74,4 @@ const mutationUsersResolvers: IResolvers = {
   },
 };
 
-export default mutationUsersResolvers;
+export default mutationUsersAddResolvers;
