@@ -58,7 +58,7 @@ const queryResolvers: IResolvers = {
         return {
           status: false,
           message: "Token no correcto por estar caducado o inválido"
-        }
+        };
       }
       return {
         status: true,

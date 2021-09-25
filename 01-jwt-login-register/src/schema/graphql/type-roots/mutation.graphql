@@ -2,5 +2,5 @@ type Mutation {
   "Añadir / registra usuarios en la Base de datos"
   add(user:UserInput!): ResultUser!
   "Modificar / Cambiar la información del usuario seleccionado"
-  update(user: UserInput!): Boolean
+  update(user: UserInput!): ResultUser!
 }
