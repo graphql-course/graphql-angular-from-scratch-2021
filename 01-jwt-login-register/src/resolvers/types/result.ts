@@ -1,5 +1,5 @@
 import { IResolvers } from "@graphql-tools/utils";
-import { IUser } from "../interfaces/user.interface";
+import { IUser } from "../../interfaces/user.interface";
 
 
 const typesResolvers: IResolvers = {
