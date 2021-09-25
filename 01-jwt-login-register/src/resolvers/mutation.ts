@@ -2,6 +2,7 @@ import { IUser } from "./../interfaces/user.interface";
 import { IResolvers } from "@graphql-tools/utils";
 import { Db } from "mongodb";
 import bcrypt from "bcrypt";
+import JWT from "../lib/jwt";
 const mutationResolvers: IResolvers = {
   Mutation: {
     add: async (
@@ -78,14 +79,20 @@ const mutationResolvers: IResolvers = {
     update: async (
       _: void,
       args: { user: IUser },
-      context: { db: Db }
+      context: { db: Db, token: string }
     ): Promise<{
       status: boolean,
       message: string,
       user?: IUser
     }> => { 
       // Verificar el token para poder realizar la operación
-
+      const info = new JWT().verify(context.token);
+      if(info === "Token inválido") {
+        return {
+          status: false,
+          message: "Token no correcto por estar caducado o inválido. No puedes actualizar el usuario por no tener permiso"
+        };
+      }
       // Verificar si el usuario existe mediante el id
       const userData: IUser = await context.db.collection("users")
       .findOne({ id: args.user.id}) as IUser;
@@ -103,7 +110,7 @@ const mutationResolvers: IResolvers = {
         .collection("users")
         .updateOne({id: args.user.id}, {$set: args.user})
         .then(() => {
-          console.log("Actualizado correctamente");
+          
           return {
             status: true,
             message: "actualizado correctamente el usuario",
