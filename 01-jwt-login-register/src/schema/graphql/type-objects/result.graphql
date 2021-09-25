@@ -1,10 +1,10 @@
-type ResultUser {
+type ResultUser implements Result{
     status: Boolean!
     message: String!
     user: User
 }
 
-type ResultToken {
+type ResultToken implements Result{
     status: Boolean!
     message: String!
     token: String
