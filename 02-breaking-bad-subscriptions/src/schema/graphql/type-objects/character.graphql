@@ -1,0 +1,20 @@
+
+"Información del personaje de Breaking Bad"
+type Character {
+    "Identificador único"
+    id: ID!
+    "Nombre / Apellido del personaje"
+    name: String!
+    "Nombre / Apellido del actor que interpreta el personaje"
+    actor: String!
+    "Descripción + detallada acerca del personaje"
+    description: String!
+    "Episodios en los que ha participado el persoaje en la serie"
+    total_episodes: Int!
+    "Nombre del fichero de la foto"
+    photo: String!
+    "Votos que ha recibido"
+    votes: Int!
+    "Información del personaje + detallada"
+    url: String!
+}

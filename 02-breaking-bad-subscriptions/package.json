@@ -1,0 +1,38 @@
+{
+  "name": "server-subscriptions-as3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/app.js",
+    "build": "npx tsc -p . && ncp src/schema build/schema",
+    "dev": "nodemon \"src/app.ts\" --exec \"ts-node\" \"src/app.ts\" -e ts,graphql,json",
+    "lint": "npx eslint . --ext .ts",
+    "lint.fix": "npx eslint . --ext .ts --fix"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@graphql-tools/load-files": "^6.4.0",
+    "@graphql-tools/schema": "^7.1.5",
+    "apollo-server-express": "3.3.0",
+    "chalk": "^4.1.2",
+    "compression": "^1.7.4",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.1",
+    "graphql-import-node": "^0.0.4",
+    "graphql-subscriptions": "^1.2.1",
+    "mongodb": "^4.1.2",
+    "nodemon": "^2.0.12",
+    "subscriptions-transport-ws": "^0.9.19",
+    "ts-node": "^10.2.1"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.2",
+    "@types/express": "^4.17.13",
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^16.7.10",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "eslint": "^7.32.0"
+  }
+}

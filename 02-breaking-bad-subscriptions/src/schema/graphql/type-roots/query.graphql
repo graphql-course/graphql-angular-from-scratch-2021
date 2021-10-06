@@ -1,0 +1,9 @@
+"Definiciones donde obtenemos la información de los personajes"
+type Query {
+    "Obtenemos la lista de todos los personajes"
+    characters: [Character!]!
+    "Información del personaje seleccionado mediante el ID"
+    character(
+        "Identificador del personaje seleccionado"
+        id: ID!): Character
+}
