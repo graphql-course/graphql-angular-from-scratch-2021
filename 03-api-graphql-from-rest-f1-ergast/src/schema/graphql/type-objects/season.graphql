@@ -1,0 +1,16 @@
+"Información de la temporada"
+type Season {
+  "Año de la temporada"
+  year: String!
+  """
+  Información de wikipedia. Obtendremos una URL de este estilo:
+  https://en.wikipedia.org/wiki/1950_Formula_One_season
+  """
+  url: String!
+  """
+  Información de wikipedia adaptada a los dispositivos móviles.
+  Obtendremos una URL de este estilo:
+  https://en.m.wikipedia.org/wiki/1950_Formula_One_season
+  """
+  urlMobile: String!
+}

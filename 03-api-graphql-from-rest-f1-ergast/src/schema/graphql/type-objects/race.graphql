@@ -1,0 +1,35 @@
+"Información de la carrera"
+type Race {
+  "Temporada de esa carrera"
+  season: String!
+  "Número de carrera"
+  round: String!
+  """
+  Información de wikipedia. Obtendremos una URL de este estilo:
+  https://en.wikipedia.org/wiki/2012_Australian_Grand_Prix
+  """
+  url: String!
+  """
+  Información de wikipedia adaptada a los dispositivos móviles.
+  Obtendremos una URL de este estilo:
+  https://en.m.wikipedia.org/wiki/2012_Australian_Grand_Prix
+  """
+  urlMobile: String!
+  """
+  Nombre del Gran Premio al que corresponde esa carrera.
+  Por ejemplo: Gran Premio Australiano
+  """
+  name: String!
+  """
+  Información del circuito con sus propiedades
+  * Nombre
+  * Url del circuito
+  * Localización
+  * ...
+  """
+  circuit: Circuit!
+  "Fecha en la que se celebra este gran Premio"
+  date: String!
+  "Hora en la que se celebra"
+  time: String
+}

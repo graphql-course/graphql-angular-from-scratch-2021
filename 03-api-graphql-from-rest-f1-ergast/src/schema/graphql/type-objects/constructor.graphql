@@ -1,0 +1,23 @@
+"Información del equipo de Formula 1"
+type Constructor {
+  """
+  Identificador único del constructor que usaremos para cuando queramos obtener la
+  información de un constructor mediante la API
+  """
+  id: String!
+  """
+  Información de wikipedia. Obtendremos una URL de este estilo:
+  https://en.wikipedia.org/wiki/1950_Formula_One_season
+  """
+  url: String!
+  """
+  Información de wikipedia adaptada a los dispositivos móviles.
+  Obtendremos una URL de este estilo:
+  https://en.m.wikipedia.org/wiki/1950_Formula_One_season
+  """
+  urlMobile: String!
+  "Nombre del equipo"
+  name: String!
+  "Nacionalidad del equipo"
+  nationality: String!
+}
