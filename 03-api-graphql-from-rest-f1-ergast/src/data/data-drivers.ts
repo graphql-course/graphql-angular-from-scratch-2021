@@ -7,7 +7,7 @@ export class DriversData extends F1 {
     super();
   }
 
-  async getDrivers(pageElements: number = -1, page: number = 1): Promise<RESTDataSource<unknown>> {
+  async getDrivers(pageElements = -1, page = 1): Promise<RESTDataSource<unknown>> {
     if (pageElements === -1) {
       return await this.get("drivers.json?limit=1000", {
         cacheOptions: { ttl: 60 },

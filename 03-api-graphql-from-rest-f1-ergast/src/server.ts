@@ -3,6 +3,7 @@ import compression from "compression";
 import express, { Application } from "express";
 import { GraphQLSchema } from "graphql";
 import { createServer, Server } from "http";
+import { dataSources } from "./data";
 
 class GraphQLServer {
   // Propiedades
@@ -37,6 +38,12 @@ class GraphQLServer {
     const apolloServer = new ApolloServer({
       schema: this.schema,
       introspection: true,
+      dataSources: ()  => ({
+        seasons: new dataSources.SeasonsData,
+        races: new dataSources.RacesData(),
+        drivers: new dataSources.DriversData(),
+        circuits: new dataSources.CircuitsData()
+      })
     });
 
     await apolloServer.start();
