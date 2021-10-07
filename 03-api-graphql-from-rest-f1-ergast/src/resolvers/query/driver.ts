@@ -5,12 +5,12 @@ const queryDriverResolvers: IResolvers = {
     async historyDrivers(_: void, { pageElements, page }, { dataSources }) {
       return await dataSources.drivers
         .getDrivers(pageElements, page)
-        .then((data: any) => data.MRData.DriverTable.Drivers);
+        .then((data: { MRData: { DriverTable: { Drivers: Array<unknown> } } }) => data.MRData.DriverTable.Drivers);
     },
     async driversYear(_: void, { year }, { dataSources }) {
       return await dataSources.drivers
         .getDriversByYear(year)
-        .then((data: any) => data.MRData.DriverTable.Drivers);
+        .then((data: { MRData: { DriverTable: { Drivers: Array<unknown> } } }) => data.MRData.DriverTable.Drivers);
     },
     async driversYearAndRound(_: void, { year, round }, { dataSources }) {
       return await dataSources.drivers
