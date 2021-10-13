@@ -1,0 +1,14 @@
+type User {
+  "Identificador del usuario"
+  id: ID!
+  "Nombre y apellidos del usuario"
+  name: String!
+  "Si es instructor"
+  instructor: Boolean!
+  "Identificador del usuario de twitter (sin la url principal)"
+  twitter: String!
+  "Página qweb personal o repositorio Github"
+  web: String!
+  "Lenguajes de programación en los que trabajo"
+  languages: [Language!]!
+}
