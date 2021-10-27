@@ -2,6 +2,7 @@ import { IUser } from "../../../interfaces/user.interface";
 import { IResolvers } from "@graphql-tools/utils";
 import { Db } from "mongodb";
 import bcrypt from "bcrypt";
+import { ADD_MESSAGES } from "../../../config/constants";
 const mutationUserAddResolver: IResolvers = {
   Mutation: {
     add: async (
@@ -22,7 +23,7 @@ const mutationUserAddResolver: IResolvers = {
       if (userCheck) {
         return {
           status: false,
-          message: "Usuario existe y no podemos registrarnos"
+          message: ADD_MESSAGES.USER_EXIST
         };
       }
 
@@ -30,7 +31,7 @@ const mutationUserAddResolver: IResolvers = {
       if (!args.user.password) {
         return {
           status: false,
-          message: "Password no establecido / asignado"
+          message: ADD_MESSAGES.NO_PASSWORD
         };
       }
 

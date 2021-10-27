@@ -2,6 +2,7 @@ import { IUser } from "../../../interfaces/user.interface";
 import { IResolvers } from "@graphql-tools/utils";
 import { Db } from "mongodb";
 import JWT from "../../../lib/jwt";
+import { UPDATE_MESSAGES } from "../../../config/constants";
 const mutationUserUpdateResolvers: IResolvers = {
   Mutation: {
     update: async (
@@ -18,7 +19,7 @@ const mutationUserUpdateResolvers: IResolvers = {
       if(info === "Token inválido") {
         return {
           status: false,
-          message: "Token no correcto por estar caducado o inválido. No puedes actualizar el usuario por no tener permiso"
+          message: UPDATE_MESSAGES.NO_TOKEN
         };
       }
       // Verificar si el usuario existe mediante el id
@@ -28,7 +29,7 @@ const mutationUserUpdateResolvers: IResolvers = {
       if (!userData) {
         return {
           status: false,
-          message: "Usuario No se puede actualizar. No está registrado. ¿Estás seguro que has introducido correctamente los datos?"
+          message: UPDATE_MESSAGES.USER_NOT_UPDATE
         };
       }
       args.user = Object.assign(args.user, { password: userData.password, registerDate: userData.registerDate});
