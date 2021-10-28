@@ -1,4 +1,4 @@
-import { ME_MESSAGES } from "./../../config/constants";
+import { ELEMENT_SELECT, ME_MESSAGES } from "./../../config/constants";
 import { IResolvers } from "@graphql-tools/utils";
 import { IUser } from "../../interfaces/user.interface";
 import JWT from "../../lib/jwt";
@@ -12,6 +12,7 @@ const queryMeResolvers: IResolvers = {
     ): {
       status: boolean;
       message: string;
+      elementSelect?: string;
       user?: IUser;
     } => {
       console.log(context.token);
@@ -20,11 +21,13 @@ const queryMeResolvers: IResolvers = {
         return {
           status: false,
           message: ME_MESSAGES.TOKEN_EXPIRED,
+          elementSelect: ELEMENT_SELECT.USER,
         };
       }
       return {
         status: true,
         message: ME_MESSAGES.TOKEN_CORRECT,
+        elementSelect: ELEMENT_SELECT.USER,
         user: (info as unknown as { user: IUser }).user,
       };
     },

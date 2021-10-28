@@ -1,4 +1,4 @@
-import { LOGIN_MESSAGES } from "./../../config/constants";
+import { ELEMENT_SELECT, LOGIN_MESSAGES } from "./../../config/constants";
 import bcrypt from "bcrypt";
 import { IResolvers } from "@graphql-tools/utils";
 import { Db } from "mongodb";
@@ -17,6 +17,7 @@ const queryLoginResolvers: IResolvers = {
     ): Promise<{
       status: boolean;
       message: string;
+      elementSelect?: string;
       token?: string;
     }> => {
       return await context.db
@@ -27,6 +28,7 @@ const queryLoginResolvers: IResolvers = {
             return {
               status: false,
               message: LOGIN_MESSAGES.USER_EXIST,
+              elementSelect: ELEMENT_SELECT.TOKEN
             };
           }
           // Comprobamos el password
@@ -34,6 +36,7 @@ const queryLoginResolvers: IResolvers = {
             return {
               status: false,
               message: LOGIN_MESSAGES.PASSWORD_NO_CORRECT,
+              elementSelect: ELEMENT_SELECT.TOKEN
             };
           }
           delete user?._id;
@@ -42,6 +45,7 @@ const queryLoginResolvers: IResolvers = {
           return {
             status: true,
             message: "Usuario correctamente cargado",
+            elementSelect: ELEMENT_SELECT.TOKEN,
             token: new JWT().sign(user as IUser),
           };
         })
@@ -49,6 +53,7 @@ const queryLoginResolvers: IResolvers = {
           return {
             status: false,
             message: `Error (Login): ${error}`,
+            elementSelect: ELEMENT_SELECT.TOKEN
           };
         });
     },
