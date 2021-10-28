@@ -2,7 +2,7 @@ import { IUser } from "../../../interfaces/user.interface";
 import { IResolvers } from "@graphql-tools/utils";
 import { Db } from "mongodb";
 import bcrypt from "bcrypt";
-import { ADD_MESSAGES } from "../../../config/constants";
+import { ADD_MESSAGES, ELEMENT_SELECT } from "../../../config/constants";
 const mutationUserAddResolver: IResolvers = {
   Mutation: {
     add: async (
@@ -12,6 +12,7 @@ const mutationUserAddResolver: IResolvers = {
     ): Promise<{
       status: boolean,
       message: string,
+      elementSelect: string,
       user?: IUser
     }> => {
       // Comprobar si existe el usuario en la base de datos con el correo
@@ -23,7 +24,8 @@ const mutationUserAddResolver: IResolvers = {
       if (userCheck) {
         return {
           status: false,
-          message: ADD_MESSAGES.USER_EXIST
+          message: ADD_MESSAGES.USER_EXIST,
+          elementSelect: ELEMENT_SELECT.USER
         };
       }
 
@@ -31,7 +33,8 @@ const mutationUserAddResolver: IResolvers = {
       if (!args.user.password) {
         return {
           status: false,
-          message: ADD_MESSAGES.NO_PASSWORD
+          message: ADD_MESSAGES.NO_PASSWORD,
+          elementSelect: ELEMENT_SELECT.USER
         };
       }
 
@@ -64,6 +67,7 @@ const mutationUserAddResolver: IResolvers = {
           return {
             status: true,
             message: "Añadido correctamente el usuario",
+            elementSelect: ELEMENT_SELECT.USER,
             user: args.user
           };
         })
@@ -71,7 +75,8 @@ const mutationUserAddResolver: IResolvers = {
           console.log(`ERROR: ${error}`);
           return {
             status: false,
-            message: `ERROR: ${error}`
+            message: `ERROR: ${error}`,
+            elementSelect: ELEMENT_SELECT.USER
           };
         });
     }

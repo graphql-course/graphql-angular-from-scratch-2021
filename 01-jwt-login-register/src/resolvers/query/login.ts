@@ -10,15 +10,15 @@ const queryLoginResolvers: IResolvers = {
     login: async (
       _: void,
       args: {
-        email: string;
+        email: string,
         password: string;
       },
       context: { db: Db }
     ): Promise<{
-      status: boolean;
-      message: string;
-      elementSelect?: string;
-      token?: string;
+      status: boolean,
+      message: string,
+      elementSelect?: string,
+      token?: string,
     }> => {
       return await context.db
         .collection("users")

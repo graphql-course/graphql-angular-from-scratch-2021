@@ -2,7 +2,7 @@ import { IUser } from "../../../interfaces/user.interface";
 import { IResolvers } from "@graphql-tools/utils";
 import { Db } from "mongodb";
 import JWT from "../../../lib/jwt";
-import { UPDATE_MESSAGES } from "../../../config/constants";
+import { ELEMENT_SELECT, UPDATE_MESSAGES } from "../../../config/constants";
 const mutationUserUpdateResolvers: IResolvers = {
   Mutation: {
     update: async (
@@ -12,6 +12,7 @@ const mutationUserUpdateResolvers: IResolvers = {
     ): Promise<{
       status: boolean,
       message: string,
+      elementSelect: string,
       user?: IUser
     }> => { 
       // Verificar el token para poder realizar la operación
@@ -19,7 +20,8 @@ const mutationUserUpdateResolvers: IResolvers = {
       if(info === "Token inválido") {
         return {
           status: false,
-          message: UPDATE_MESSAGES.NO_TOKEN
+          message: UPDATE_MESSAGES.NO_TOKEN,
+          elementSelect: ELEMENT_SELECT.USER
         };
       }
       // Verificar si el usuario existe mediante el id
@@ -29,7 +31,8 @@ const mutationUserUpdateResolvers: IResolvers = {
       if (!userData) {
         return {
           status: false,
-          message: UPDATE_MESSAGES.USER_NOT_UPDATE
+          message: UPDATE_MESSAGES.USER_NOT_UPDATE,
+          elementSelect: ELEMENT_SELECT.USER
         };
       }
       args.user = Object.assign(args.user, { password: userData.password, registerDate: userData.registerDate});
@@ -43,6 +46,7 @@ const mutationUserUpdateResolvers: IResolvers = {
           return {
             status: true,
             message: "actualizado correctamente el usuario",
+            elementSelect: ELEMENT_SELECT.USER,
             user: args.user
           };
         })
@@ -50,7 +54,8 @@ const mutationUserUpdateResolvers: IResolvers = {
           console.log(`ERROR: ${error}`);
           return {
             status: false,
-            message: `ERROR - No Actualizado: ${error}`
+            message: `ERROR - No Actualizado: ${error}`,
+            elementSelect: ELEMENT_SELECT.USER
           };
         });
     }

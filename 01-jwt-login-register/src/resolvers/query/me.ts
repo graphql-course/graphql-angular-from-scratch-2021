@@ -10,12 +10,11 @@ const queryMeResolvers: IResolvers = {
       __: unknown,
       context: { token: string }
     ): {
-      status: boolean;
-      message: string;
-      elementSelect?: string;
-      user?: IUser;
+      status: boolean,
+      message: string,
+      elementSelect?: string,
+      user?: IUser,
     } => {
-      console.log(context.token);
       const info = new JWT().verify(context.token);
       if (info === "Token inválido") {
         return {
