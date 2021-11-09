@@ -1,0 +1,7 @@
+# Definir resultado con más detalle
+type Result {
+  status: Boolean!
+  message: String!
+  list: [Data!]
+  item: Data
+}

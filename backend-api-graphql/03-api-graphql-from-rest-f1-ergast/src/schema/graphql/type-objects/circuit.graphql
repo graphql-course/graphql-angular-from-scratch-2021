@@ -1,0 +1,28 @@
+"Información correspondiente al circuito"
+type Circuit {
+  """
+  Identificador único del circuito que usaremos para cuando queramos obtener la
+  información de un circuito mediante la API
+  """
+  id: String!
+  """
+  Información de wikipedia. Obtendremos una URL de este estilo:
+  https://en.wikipedia.org/wiki/1950_Formula_One_season
+  """
+  url: String!
+  """
+  Información de wikipedia adaptada a los dispositivos móviles.
+  Obtendremos una URL de este estilo:
+  https://en.m.wikipedia.org/wiki/1950_Formula_One_season
+  """
+  urlMobile: String!
+  "Nombre del circuito"
+  name: String!
+  """
+  Localización del circuito con estas propiedades:
+  * Coordenadas geográficas : latitud / longitud
+  * Localidad
+  * País
+  """
+  location: Location!
+}

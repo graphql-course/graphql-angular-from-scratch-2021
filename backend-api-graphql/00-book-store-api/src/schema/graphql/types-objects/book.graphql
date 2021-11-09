@@ -1,0 +1,14 @@
+# Información de los libros
+type Book {
+  id: ID!
+  title: String!
+  isbn: String!
+  pageCount: Int!
+  publishedDate: String
+  thumbnailUrl: String
+  shortDescription: String
+  longDescription: String
+  status: String
+  authors: [String!]!
+  byPeoplesBuy: [People]
+}

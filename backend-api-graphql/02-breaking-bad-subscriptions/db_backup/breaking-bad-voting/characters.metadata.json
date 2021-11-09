@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"breaking-bad-voting.characters"}],"uuid":"d0b614eed0814671bd7873445b0e6df3"}

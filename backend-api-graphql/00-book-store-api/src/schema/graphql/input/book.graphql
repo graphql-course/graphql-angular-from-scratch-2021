@@ -1,0 +1,13 @@
+input BookInput {
+  id: ID
+  title: String!
+  isbn: String!
+  pageCount: Int!
+  publishedDate: String
+  thumbnailUrl: String
+  shortDescription: String
+  longDescription: String
+  status: StatusEnum = UNPUBLISH
+  "Autores que han escrito el libro"
+  authors: [String!]!
+}

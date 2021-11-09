@@ -1,0 +1,78 @@
+type Query {
+  "Lista de las temporadas de Formula 1. De 1950 a 2019 lo seleccionamos"
+  seasonsList: [Season!]!
+  """ 
+  Obtenemos la información de las carreras seleccionadas por año.
+  Tener en cuenta que solo existen las temporadas desde la 1950 a 2019.
+  En el caso de que introduzcamos un valor que no corresponde a ese
+  rango de años, se asignará el año actual. Por ejemplo, si nos encontramos
+  en el año 2019, el año quese asignará será el 2019 en el caso de que no
+  añadamos el año correctamente
+  """
+  racesByYear(year: String!): [Race!]!
+  """
+  Carrera seleccionada por año y por número de carrera.
+  Tener en cuenta que solo existen las temporadas desde la 1950 a 2019.
+  En el caso de que introduzcamos un valor que no corresponde a ese
+  rango de años, se asignará el año actual. Por ejemplo, si nos encontramos
+  en el año 2019, el año quese asignará será el 2019 en el caso de que no
+  añadamos el año correctamente
+  """
+  raceSelect(year: String!, round: Int!): Race
+  """
+  Lista de los pilotos de la F1 de toda la historia.
+  Tenemos dos opciones:
+  Obtener todos los pilotos
+  Obtener los pilotos haciendo uso de la paginación y podemos limitar el número de resultados
+  Tener en cuenta que solo existen las temporadas desde la 1950 a 2019.
+  En el caso de que introduzcamos un valor que no corresponde a ese
+  rango de años, se asignará el año actual. Por ejemplo, si nos encontramos
+  en el año 2019, el año quese asignará será el 2019 en el caso de que no
+  añadamos el año correctamente
+  """
+  historyDrivers(pageElements: Int, page: Int): [Driver!]!
+  """ 
+  Obtenemos la información de los pilotos seleccionados por año.
+  Tener en cuenta que solo existen las temporadas desde la 1950 a 2019.
+  En el caso de que introduzcamos un valor que no corresponde a ese
+  rango de años, se asignará el año actual. Por ejemplo, si nos encontramos
+  en el año 2019, el año quese asignará será el 2019 en el caso de que no
+  añadamos el año correctamente
+  """
+  driversYear(year: String!): [Driver!]!
+  """ 
+  Obtenemos la información de los pilotos seleccionados por año y número de carrera.
+  Tener en cuenta que solo existen las temporadas desde la 1950 a 2019.
+  En el caso de que introduzcamos un valor que no corresponde a ese
+  rango de años, se asignará el año actual. Por ejemplo, si nos encontramos
+  en el año 2019, el año quese asignará será el 2019 en el caso de que no
+  añadamos el año correctamente
+  """
+  driversYearAndRound(year: String!, round: Int!): [Driver!]!
+  """
+  Obtenemos la información del piloto mediante el valor 'id'
+  Este valor lo obtenemos del tipo de objeto 'Driver' en la propiedad 'id'
+  donde lo pasamos para obtener los detalles de ese piloto seleccionado.
+  Si introducimos con el 'id' 'alonso', obtendremos la información del piloto
+  Fernando Alonso
+  """
+  driverSelect(id: String!): Driver
+  """
+  Clasificación final de los pilotos de una temporada.
+  Tener en cuenta que solo existen las temporadas desde la 1950 a 2019.
+  En el caso de que introduzcamos un valor que no corresponde a ese
+  rango de años, se asignará el año actual. Por ejemplo, si nos encontramos
+  en el año 2019, el año quese asignará será el 2019 en el caso de que no
+  añadamos el año correctamente
+  """
+  seasonPilotsRanking(year: String!): [DriverStanding!]!
+  """
+  Lista de los circuitos de la F1 de toda la historia.
+  Tenemos dos opciones:
+  Obtener todos los circuitos
+  Obtener los circuitos haciendo uso de la paginación y podemos limitar el número de resultados
+  """
+  historyCircuits(pageElements: Int, page: Int): [Circuit!]!,
+  "Circuito seleccionado mediante el id del piloto. Si no encuentra nada, nos devuelve null"
+  circuitSelect(id: String!): Circuit
+}

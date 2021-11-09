@@ -1,0 +1,10 @@
+"""Resultado de la operación que usamos en las definiciones de los mutation. 
+Añadir, modificar o en el caso de borrar los votos"""
+type ResultOperation {
+    "Estado de la operación, true o false"
+    status: Boolean!
+    "Mensaje descriptivo para que usuario sepa que ha ocurrido exactamente"
+    message: String!
+    "Lista de personajes"
+    characters: [Character!]!
+}

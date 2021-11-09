@@ -1,0 +1,46 @@
+{
+  "name": "book-store-api",
+  "version": "1.0.0",
+  "description": "Proyecto inicial para aprender las bases de GraphQL mediante la práctica",
+  "main": "build/app.js",
+  "scripts": {
+    "start": "node build/app.js",
+    "build": "npx tsc -p . && ncp src/schema build/schema",
+    "dev": "nodemon \"src/app.ts\" --exec \"ts-node\" \"src/app.ts\" -e ts,graphql,json",
+    "lint": "npx eslint . --ext .ts",
+    "lint.fix": "npx eslint . --ext .ts --fix"
+  },
+  "keywords": [
+    "graphql",
+    "graphql-basic",
+    "unions",
+    "query",
+    "mutation",
+    "book-store-",
+    "apollo-server-express-3"
+  ],
+  "author": "Anartz Mugika Ledo <mugan86@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@graphql-tools/load-files": "^6.4.0",
+    "apollo-server-express": "^3.3.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "graphql": "^15.5.3",
+    "graphql-import-node": "^0.0.4",
+    "graphql-tools": "^8.2.0",
+    "ncp": "^2.0.0",
+    "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.1",
+    "@types/express": "^4.17.13",
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^16.7.10",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "eslint": "^7.32.0",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1"
+  }
+}

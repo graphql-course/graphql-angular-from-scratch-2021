@@ -1,0 +1,11 @@
+"Localización del circuito"
+type Location {
+  "Coordenada geográfica - latitud"
+  lat: String!
+  "Coordenada geográfica - longitud"
+  lng: String!
+  "Nombre de la localización"
+  locality: String!
+  "País de la localización"
+  country: String!
+}

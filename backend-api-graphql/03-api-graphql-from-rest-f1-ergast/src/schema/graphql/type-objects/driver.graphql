@@ -1,0 +1,48 @@
+"Información del piloto que participa en carreras de F1"
+type Driver {
+  """
+  Identificador único del piloto que usaremos para cuando queramos obtener la
+  información de un piloto mediante la API
+  """
+  id: String!
+  """
+  Información de wikipedia. Obtendremos una URL de este estilo:
+  https://en.wikipedia.org/wiki/1950_Formula_One_season
+  """
+  url: String!
+  """
+  Información de wikipedia adaptada a los dispositivos móviles.
+  Obtendremos una URL de este estilo:
+  https://en.m.wikipedia.org/wiki/1950_Formula_One_season
+  """
+  urlMobile: String!
+  "Nombre y apellidos del piloto"
+  name: String!
+  "Fecha de nacimiento del piloto"
+  dateOfBirth: String!
+  "Nacionalidad del piloto"
+  nationality: String!
+  "Código único del piloto"
+  code: String
+  """
+  Número permanente del piloto. Normalmente no está
+  este valor asignado a muchos pilotos
+  """
+  permanentNumber: String
+}
+
+"Estadísticas de los pilotos en las carreras / temporadas"
+type DriverStanding {
+  "Posición que ocupa"
+  position: String!
+  "Posición que ocupa"
+  positionText: String!
+  "Puntos acumulados en la carrera / temporada"
+  points: String!
+  "Victorias conseguidas en carreras"
+  wins: String!
+  "Información del piloto"
+  driver: Driver!
+  "Equipo al que pertenece el piloto"
+  constructors: [Constructor!]!
+}
