@@ -22,9 +22,8 @@
     "graphql-import-node": "^0.0.4",
     "graphql-subscriptions": "^1.2.1",
     "mongodb": "^4.1.2",
-    "nodemon": "^2.0.12",
     "subscriptions-transport-ws": "^0.9.19",
-    "ts-node": "^10.2.1"
+    "typescript": "^4.4.2"
   },
   "devDependencies": {
     "@types/compression": "^1.7.2",
@@ -33,6 +32,8 @@
     "@types/node": "^16.7.10",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
-    "eslint": "^7.32.0"
+    "eslint": "^7.32.0",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1"
   }
 }

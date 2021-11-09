@@ -1,4 +1,3 @@
-import { UsersModule } from './@pages/users/users.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
