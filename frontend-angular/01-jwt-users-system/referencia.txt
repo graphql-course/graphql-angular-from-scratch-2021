@@ -58,3 +58,17 @@ const routes: Routes = [
 6.- Eliminar todo el contenido de app.component.html excepto <router-outlet></router-outlet>
 
 7.- Comenzar la ejecución de la app
+
+8.- Añadir menu provisional
+<div style="text-align:center">
+  <h1>
+    Sistema usuarios
+  </h1>
+  <ul>
+    <li><a routerLink="/login">Login</a></li>
+    <li><a routerLink="/me">Perfil</a></li>
+    <li><a routerLink="/users">Usuarios</a></li>
+    <li><a routerLink="/register">Registro</a></li>
+  </ul>
+  
+</div>
