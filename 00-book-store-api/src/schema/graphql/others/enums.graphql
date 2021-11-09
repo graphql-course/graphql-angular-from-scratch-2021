@@ -1,4 +1,0 @@
-enum StatusEnum {
-  PUBLISH
-  UNPUBLISH
-}

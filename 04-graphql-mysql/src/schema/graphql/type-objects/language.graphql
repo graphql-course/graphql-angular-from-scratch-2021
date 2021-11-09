@@ -1,5 +1,0 @@
-type Language {
-  id: ID!
-  name: String!
-  users: [User!]!
-}

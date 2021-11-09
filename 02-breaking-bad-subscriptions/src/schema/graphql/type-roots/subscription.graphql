@@ -1,7 +1,0 @@
-"Acciones donde vamos a recibir las notificaciones en tiempo real de los cambios"
-type Subscription {
-    "Definición para recibir los avisos de los cambios en los votos sea cual sea la acción"
-    changeVotes: [Character!]!
-    "Definición para recibir el número de votos en tiempo real del personaje seleccionado"
-    changeVote(id: ID!): Character!
-}
