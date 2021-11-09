@@ -1,2 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css");
+
+.container {
+    margin-top: 25px;
+}
+
+#form {
+    background-color: #f2f3f4;
+    padding: 40px;
+    margin: 0 auto;
+    border-radius: 10px;
+    -webkit-box-shadow: 19px 23px 11px -12px rgba(166,161,166,1);
+    -moz-box-shadow: 19px 23px 11px -12px rgba(166,161,166,1);
+    box-shadow: 19px 23px 11px -12px rgba(166,161,166,1);
+}
+
+#form-title {
+    border-bottom: 1px gray dotted;
+    padding-bottom: 4px;
+    color: darkgrey
+}
+
+.btn-primary {
+    background-color: #2279a2;
+}

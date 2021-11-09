@@ -1,3 +1,4 @@
+import { LoadingModule } from './../../@core/components/loading/loading.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +12,8 @@ import { UsersComponent } from './users.component';
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    LoadingModule
   ]
 })
 export class UsersModule { }
