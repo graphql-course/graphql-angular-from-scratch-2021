@@ -6,3 +6,55 @@ ng g m @pages/me --routing
 ng g m @pages/users --routing
 ng g m @pages/login --routing
 ng g m @pages/register --routing
+
+3.- Crear componentes asociados a los módulos
+ng g c @pages/me --skip-tests
+ng g c @pages/users --skip-tests
+ng g c @pages/login --skip-tests
+ng g c @pages/register --skip-tests
+
+4.- Añadir el componente en el routing.modules de cada carpeta para poder aplicar bien 
+Lazy Loading
+Por ejemplo, me-routing.module.ts
+
+import { MeComponent } from './me.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [{
+  path: '',                 <=========
+  component: MeComponent    <=========
+}];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class MeRoutingModule { }
+
+5.- Configurando el fichero principal de rutas
+
+En app-routing.module.ts
+const routes: Routes = [
+  {
+    path: `login`, loadChildren: () =>
+      import('./@pages/login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: `me`, loadChildren: () =>
+      import('./@pages/me/me.module').then(m => m.MeModule)
+  },
+  {
+    path: `users`, loadChildren: () =>
+      import('./@pages/users/users.module').then(m => m.UsersModule)
+  },
+  {
+    path: `register`, loadChildren: () =>
+      import('./@pages/register/register.module').then(m => m.RegisterModule)
+  },
+  {path: '**', pathMatch: 'full', redirectTo: 'login'}
+];
+
+6.- Eliminar todo el contenido de app.component.html excepto <router-outlet></router-outlet>
+
+7.- Comenzar la ejecución de la app
