@@ -1,0 +1,8 @@
+1.- Empezar el proyecto
+npx -p @angular/cli@13 ng new jwt-users-system --routing --style=css 
+2.- Crear módulos para aplicar Lazy Loading
+https://mugan86.medium.com/trabajando-con-lazy-loading-en-angular-8-e1611ce2c46f
+ng g m @pages/me --routing
+ng g m @pages/users --routing
+ng g m @pages/login --routing
+ng g m @pages/register --routing
