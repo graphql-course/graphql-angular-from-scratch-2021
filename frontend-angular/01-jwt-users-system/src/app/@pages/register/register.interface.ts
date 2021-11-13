@@ -11,4 +11,5 @@ export interface RegisterData {
     lastname: string;
     email: string;
     password: string;
+    repeatPass?: string;
 }

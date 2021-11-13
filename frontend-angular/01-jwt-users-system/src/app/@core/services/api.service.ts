@@ -49,6 +49,8 @@ export class ApiService {
         variables: {
           user
         }
-      });
+      }).pipe(map((result: any) => {
+        return result.data.register;
+      }));
   }
 }

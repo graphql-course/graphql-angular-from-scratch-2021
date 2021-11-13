@@ -1,1 +1,40 @@
-<p>register works!</p>
+<div class="container">
+	<form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+
+		<h3>Inicio de sesión - Formulario reactivo</h3>
+		<label>Nombre</label>
+		<input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid':  form['name'].errors }" />
+		<div *ngIf="form['name'].errors" class="invalid-feedback">
+			<div *ngIf="form['name'].errors['required']">El nombre es obligatorio</div>
+		</div>
+        <label>Apellidos</label>
+		<input type="text" formControlName="lastname" class="form-control" [ngClass]="{ 'is-invalid':  form['lastname'].errors }" />
+		<div *ngIf="form['lastname'].errors" class="invalid-feedback">
+			<div *ngIf="form['lastname'].errors['required']">Los apellidos son obligatorios</div>
+		</div>
+		<label>Email</label>
+		<input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': form['email'].errors }" />
+		<div *ngIf="form['email'].errors" class="invalid-feedback">
+			<div *ngIf="form['email'].errors['required']">El email es obligatorio</div>
+			<div *ngIf="!form['email'].errors['required']">El email debe de ser válido</div>
+		</div>
+
+		<label>Contraseña</label>
+		<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': form['password'].errors }" />
+		<div *ngIf="form['password'].errors" class="invalid-feedback">
+			<div *ngIf="form['password'].errors['required']">La contraseña es obligatoria</div>
+			<div *ngIf="form['password'].errors['minlength']">La contraseña debe de tener mínimo 6 carácteres</div>
+		</div>
+
+		<label>Repetir contraseña</label>
+		<input type="password" formControlName="repeatPass" class="form-control" [ngClass]="{ 'is-invalid': form['repeatPass'].errors }" />
+		<div *ngIf="form['repeatPass'].errors" class="invalid-feedback">
+			<div *ngIf="form['repeatPass'].errors['required']">Repetir contraseña es requerido</div>
+			<div *ngIf="form['repeatPass'].errors['mustMatch']">Las contraseñas debden de coincidir</div>
+		</div>
+		<div class="text-center">
+			<button class="btn btn-primary mr-1" [disabled]="registerForm.invalid">Registrarse</button>
+			<button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+		</div>
+	</form>
+</div>
