@@ -39,14 +39,15 @@ const queryLoginResolvers: IResolvers = {
               elementSelect: ELEMENT_SELECT.TOKEN
             };
           }
-          delete user?._id;
-          delete user.password;
-          delete user.registerDate;
+          const userData = user as unknown as IUser;
+          delete userData._id;
+          delete userData.password;
+          delete userData.registerDate;
           return {
             status: true,
             message: "Usuario correctamente cargado",
             elementSelect: ELEMENT_SELECT.TOKEN,
-            token: new JWT().sign(user as IUser),
+            token: new JWT().sign(userData),
           };
         })
         .catch((error) => {
