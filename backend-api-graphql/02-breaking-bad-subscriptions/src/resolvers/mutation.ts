@@ -62,7 +62,7 @@ const mutationResolvers = {
         .collection(COLLECTIONS.VOTES)
         .insertOne(vote)
         .then(async () => {
-          sendNotification(context.pubsub, context.db, "");
+          sendNotification(context.pubsub, context.db, args.character);
           return response(
             true,
             "El voto se ha emitido.",

@@ -1,5 +1,6 @@
 import { PubSub } from "graphql-subscriptions";
 import { ApolloServer } from "apollo-server-express";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import compression from "compression";
 import express, { Application } from "express";
 import { execute, GraphQLSchema, subscribe } from "graphql";
@@ -61,6 +62,8 @@ class GraphQLServer {
           pubsub: this.pubsub,
         };
       },
+      // Para que podamos tener disponible el playground en producción
+      plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     });
 
     await apolloServer.start();

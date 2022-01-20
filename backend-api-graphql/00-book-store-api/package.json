@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Proyecto inicial para aprender las bases de GraphQL mediante la práctica",
   "main": "build/app.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "node build/app.js",
     "build": "npx tsc -p . && ncp src/schema build/schema",
@@ -43,6 +46,7 @@
     "@typescript-eslint/parser": "^4.31.1",
     "eslint": "^7.32.0",
     "nodemon": "^2.0.12",
-    "ts-node": "^10.2.1"
+    "ts-node": "^10.2.1",
+    "vercel": "^23.1.2"
   }
 }
