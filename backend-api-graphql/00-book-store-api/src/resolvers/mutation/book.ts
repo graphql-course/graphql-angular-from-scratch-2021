@@ -1,4 +1,3 @@
-import { IPeople } from "../../interfaces/people-interface";
 import { IResolvers } from "@graphql-tools/utils";
 import data from "../../data";
 import { IBook } from "../../interfaces/book-interface";
