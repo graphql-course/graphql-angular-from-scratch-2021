@@ -14,17 +14,13 @@ const typesUnionResolvers: IResolvers = {
         };
       }
     ) {
-      return info.operation.name.value.search("Book") > -1 ? "Book" : "People";
-
-      // Only Author has a name field
-      /*if (obj.name) {
-        return "People";
-      }
-      // Only Book has a title field
-      if (obj.isbn) {
-        return "Book";
-      }
-      return null; // GraphQLError is thrown*/
+      let type = null;
+      ["Book", "People"].map((object) => {
+        if (info.operation.name.value.search(object) > -1) {
+          type = object;
+        }
+      });
+      return type;
     },
   },
 };
